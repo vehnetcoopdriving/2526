@@ -22,6 +22,6 @@ This site contains documentation, guides, and resources for the Vehicle Network 
 
 ## Navigation
 
-- **[Veins Jammer]({% link docs/ui-components/index.md %})** - Jamming attacks simulation in vehicular networks
-- **[Platoon splitting]({% link docs/utilities/index.md %})** - Platoon splitting strategies and algorithms
+- **[Veins Jammer]({% link docs/veinsjammer/index.md %})** - Jamming attacks simulation in vehicular networks
+- **[Platoon splitting]({% link docs/platoonsplitting/index.md %})** - Platoon splitting strategies and algorithms
 
