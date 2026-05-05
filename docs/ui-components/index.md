@@ -1,9 +1,9 @@
 ---
-title: UI Components
+title: Veins Jammer
 nav_order: 3
 ---
 
-# UI Components
+# Veins Jammer
 
-To make it as easy as possible to write documentation in plain Markdown, most UI components are styled using default Markdown elements with few additional CSS classes needed.
+Documentation for the Veins Jammer project - jamming attacks simulation in vehicular networks.
 {: .fs-6 .fw-300 }
