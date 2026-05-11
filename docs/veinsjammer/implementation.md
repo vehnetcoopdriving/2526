@@ -8,7 +8,7 @@ nav_order: 3
 
 ## Code Structure
 
-Overview of the code structure and main components.
+We started from VEINS 5.3.1 code
 
 ## Key Features
 
