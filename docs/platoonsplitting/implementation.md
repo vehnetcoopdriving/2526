@@ -8,7 +8,7 @@ nav_order: 3
 
 ## Code Structure
 
-Overview of the code structure and main components.
+We decided to start from this Plexe repository that contains the solution to [getting-started-tutorial](https://github.com/lorenzo-ghiro/plexe/tree/gettingStarted-tutorial)
 
 ## Key Features
 
