@@ -8,7 +8,7 @@ nav_order: 3
 
 ## Code Structure
 
-We decided to start from this Plexe repository that contains the solution to [getting-started-tutorial](https://github.com/lorenzo-ghiro/plexe/tree/gettingStarted-tutorial)
+We decided to start from this Plexe repository that contains the solution to [getting-started-tutorial-plexe3.2](https://github.com/lorenzo-ghiro/plexe/tree/gettingStarted-plexe3.2)
 
 ## Key Features
 
