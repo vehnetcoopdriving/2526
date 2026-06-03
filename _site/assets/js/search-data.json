@@ -1,0 +1,247 @@
+{"0": {
+    "doc": "Analysis",
+    "title": "Analysis",
+    "content": " ",
+    "url": "/2526/docs/veinsjammer/analysis/",
+    
+    "relUrl": "/docs/veinsjammer/analysis/"
+  },"1": {
+    "doc": "Analysis",
+    "title": "Results",
+    "content": "Presentation and discussion of simulation results. ",
+    "url": "/2526/docs/veinsjammer/analysis/#results",
+    
+    "relUrl": "/docs/veinsjammer/analysis/#results"
+  },"2": {
+    "doc": "Analysis",
+    "title": "Performance Metrics",
+    "content": "Key metrics and evaluation criteria used in the analysis. ",
+    "url": "/2526/docs/veinsjammer/analysis/#performance-metrics",
+    
+    "relUrl": "/docs/veinsjammer/analysis/#performance-metrics"
+  },"3": {
+    "doc": "Analysis",
+    "title": "Analysis",
+    "content": "The simulation was conducted using a parametric analysis approach. Values related to the fundamental dynamics and trigger timings, such as leavingTime and the various ACC controller calibration parameters, were kept constant. The execution focused instead on varying the leavingDistance parameter, which defines the distance threshold at which the leaving vehicle detaches from the original platoon. The graph illustrates the time evolution of the headway (relative frontal distance) between the simulation nodes. In the initial phase (t &lt; 3s ), the system operates in a steady state: the trailing vehicles maintain a nominal constant spacing of 5 meters, confirming the successful coupling and stability of the cooperative CACC dynamics. Upon the triggering of the leavingTime parameter, the leaving vehicle (the future leader of the sub-platoon) begins to widen the spatial gap with respect to the preceding vehicle, creating an increasing distance ramp. This phase represents the kinematic separation transient, whose objective is to push the gap up to the leavingDistance threshold in order to trigger the controller state transition. Concurrently, the slight fluctuations (ranging between 3 and 5 meters) observable in the trailing vehicles’ curves during the first 15 seconds depict the physiological settling phase of the vehicular string following the perturbation. The control loop progressively dampens the tracking error, ensuring the absorption of the transient and restoring full spatial stability for the remainder of the formation. . The comparison among the three simulated scenarios, obtained by setting the leavingDistance parameter to 8, 16, and 32 meters respectively, highlights a marked kinematic trade-off during the transient phase of the platoon separation. On one hand, as the requested leavingDistance increases, there is a natural increase in the frontal safety margin. The leaving vehicle (the new leader) opens a much deeper spatial gap relative to the tail of the original formation. Reaching an inter-vehicle distance of 32 meters guarantees a clear physical separation before authorizing the controller downgrade to autonomous mode (ACC), minimizing the risk of frontal collisions in the event of sudden braking by the old platoon. On the other hand, this frontal advantage generates a severe repercussion on the stability of the trailing vehicular string. To accumulate a larger spatial delay (as in the 32-meter case), the new leader is forced to maintain a lower speed, significantly prolonging its relative deceleration phase. This maneuver induces a strong compression effect on the trailing vehicles (the members of the sub-platoon). Since the followers, in the initial phases of the transient, are still bound to maintaining the constant spacing and are subject to the inertia of the original network dynamics (structured around the old leader’s cruising speed), the prolonged braking of the intermediate vehicle drastically reduces the headway of the tail nodes. In summary, the pursuit of maximum frontal spatial safety amplifies the backward kinematic perturbation: the delay wave dangerously narrows the inter-distances between the vehicles following the new leader, stressing the responsiveness of the control loop and temporarily reducing the internal safety margins within the newly formed convoy. ",
+    "url": "/2526/docs/platoonsplitting/analysis/",
+    
+    "relUrl": "/docs/platoonsplitting/analysis/"
+  },"4": {
+    "doc": "Analysis",
+    "title": "Future work",
+    "content": "An emergency braking scenario has been implemented to serve as a comprehensive kinematic stress test. This fault-injection mechanism is fully parameterizable within the simulation environment, allowing for the dynamic configuration of the trigger time, braking duration, and absolute deceleration force. Future research will focus on utilizing this testing framework to conduct extensive parametric sweeps. By systematically varying these stress conditions, the objective is to identify the optimal control parameters and safety thresholds for the separation maneuver, ensuring maximum string stability and collision avoidance even under the most critical dynamic constraints. ",
+    "url": "/2526/docs/platoonsplitting/analysis/#future-work",
+    
+    "relUrl": "/docs/platoonsplitting/analysis/#future-work"
+  },"5": {
+    "doc": "Assignment Goal",
+    "title": "Assignment Goal",
+    "content": " ",
+    "url": "/2526/docs/veinsjammer/assignment-goal/",
+    
+    "relUrl": "/docs/veinsjammer/assignment-goal/"
+  },"6": {
+    "doc": "Assignment Goal",
+    "title": "Objectives",
+    "content": "The main goal of this assignment is to implement a reactive jamming attack in a vehicular network simulation environment. Students will extend the baseline Veins scenario to introduce a malicious Road Side Unit (RSU) capable of disrupting vehicle-to-vehicle (V2V) communications. Starting Point . Begin with the basic Veins scenario as documented in the official Veins tutorial. This provides the foundation for vehicular network simulation with SUMO traffic simulation and OMNeT++ network simulation. Core Tasks . | Model a Jamming RSU: Design and implement a new Road Side Unit (RSU-jam) that acts as a malicious network entity capable of disrupting wireless communications in its vicinity. | Develop Custom Application: Create a new application layer protocol for the RSU-jam. This application must be developed from scratch by students and will implement the jamming behavior. | Implement Reactive Jamming Strategy: The jamming application should implement a triggered jamming approach rather than a naive constant noise generation. Specifically: . | Subscribe to physical layer events to monitor the wireless channel | Detect ongoing transmissions in real-time | React immediately by transmitting interference signals to disrupt legitimate communications | This reactive approach is more sophisticated and realistic than continuous jamming, as it conserves energy and is harder to detect | . | . Implementation Guidance . The recommended approach is to design the RSU-jam application to listen for transmission events on the physical channel. When a transmission is detected, the jammer should immediately initiate its own transmission to interfere with the legitimate signal. This creates a triggered jammer that responds to network activity rather than blindly generating constant interference. ",
+    "url": "/2526/docs/veinsjammer/assignment-goal/#objectives",
+    
+    "relUrl": "/docs/veinsjammer/assignment-goal/#objectives"
+  },"7": {
+    "doc": "Assignment Goal",
+    "title": "Expected Outcomes",
+    "content": "What are the expected outcomes and deliverables for this project? . ",
+    "url": "/2526/docs/veinsjammer/assignment-goal/#expected-outcomes",
+    
+    "relUrl": "/docs/veinsjammer/assignment-goal/#expected-outcomes"
+  },"8": {
+    "doc": "Assignment Goal",
+    "title": "Assignment Goal",
+    "content": " ",
+    "url": "/2526/docs/platoonsplitting/assignment-goal/",
+    
+    "relUrl": "/docs/platoonsplitting/assignment-goal/"
+  },"9": {
+    "doc": "Assignment Goal",
+    "title": "Objectives",
+    "content": "The main goal of this assignment is to implement an advanced platoon splitting maneuver in a vehicular platoon simulation environment. Students will extend the baseline Plexe scenario to enable the separation of a contiguous sub-platoon from an existing platoon, rather than just a single vehicle. Starting Point . Begin with Plexe Tutorial 7 - Leave Maneuver, which demonstrates how a single vehicle at the rear of a platoon can perform a leave maneuver and separate from the platoon. This provides the foundational framework for platoon management and vehicle coordination. Core Tasks . | Extend Single-Vehicle Separation to Sub-Platoon Separation: Enhance the existing leave maneuver implementation to support the departure of multiple consecutive follower vehicles as a coordinated group. Instead of a single vehicle leaving, a contiguous sub-platoon must be able to split from the main platoon while maintaining formation among the departing vehicles. | Implement Coordinated Maneuver Logic: Design and implement the coordination protocol required for multiple vehicles to execute a synchronized splitting maneuver. This includes: . | Identifying the splitting point within the platoon | Coordinating communication between vehicles in the splitting sub-platoon | Managing the transition from main platoon control to independent sub-platoon operation | Ensuring safe spacing and speed adjustments during the maneuver | . | Parametrization and Configuration: Make the splitting behavior fully configurable through the omnetpp.ini configuration file. Students should implement parameters to specify: . | The index of the vehicle initiating the split (the first vehicle of the departing sub-platoon) | The number of vehicles in the splitting sub-platoon | Timing and safety parameters for the maneuver | . | . Implementation Guidance . The recommended approach is to analyze the existing single-vehicle leave maneuver implementation and extend it to handle multiple consecutive vehicles. Key considerations include: . | How to propagate the split decision through the sub-platoon | How to maintain cohesion among splitting vehicles while decoupling from the main platoon | How to handle edge cases (e.g., splitting at different positions in the platoon) | How to ensure the maneuver is safe and realistic under various traffic conditions | . ",
+    "url": "/2526/docs/platoonsplitting/assignment-goal/#objectives",
+    
+    "relUrl": "/docs/platoonsplitting/assignment-goal/#objectives"
+  },"10": {
+    "doc": "Assignment Goal",
+    "title": "Expected Outcomes",
+    "content": "What are the expected outcomes and deliverables for this project? . ",
+    "url": "/2526/docs/platoonsplitting/assignment-goal/#expected-outcomes",
+    
+    "relUrl": "/docs/platoonsplitting/assignment-goal/#expected-outcomes"
+  },"11": {
+    "doc": "How to Run",
+    "title": "How to Run",
+    "content": " ",
+    "url": "/2526/docs/veinsjammer/how-to-run/",
+    
+    "relUrl": "/docs/veinsjammer/how-to-run/"
+  },"12": {
+    "doc": "How to Run",
+    "title": "Prerequisites",
+    "content": "List of required software and dependencies. ",
+    "url": "/2526/docs/veinsjammer/how-to-run/#prerequisites",
+    
+    "relUrl": "/docs/veinsjammer/how-to-run/#prerequisites"
+  },"13": {
+    "doc": "How to Run",
+    "title": "Running the Simulation",
+    "content": "Step-by-step instructions to run the simulation. # Example command ./run_veins_jammer.sh . ",
+    "url": "/2526/docs/veinsjammer/how-to-run/#running-the-simulation",
+    
+    "relUrl": "/docs/veinsjammer/how-to-run/#running-the-simulation"
+  },"14": {
+    "doc": "How to Run",
+    "title": "How to Run",
+    "content": " ",
+    "url": "/2526/docs/platoonsplitting/how-to-run/",
+    
+    "relUrl": "/docs/platoonsplitting/how-to-run/"
+  },"15": {
+    "doc": "How to Run",
+    "title": "Prerequisites",
+    "content": "List of required software and dependencies. ",
+    "url": "/2526/docs/platoonsplitting/how-to-run/#prerequisites",
+    
+    "relUrl": "/docs/platoonsplitting/how-to-run/#prerequisites"
+  },"16": {
+    "doc": "How to Run",
+    "title": "Running the Simulation",
+    "content": "Step-by-step instructions to run the simulation. # Example command ./run_platoon_splitting.sh . ",
+    "url": "/2526/docs/platoonsplitting/how-to-run/#running-the-simulation",
+    
+    "relUrl": "/docs/platoonsplitting/how-to-run/#running-the-simulation"
+  },"17": {
+    "doc": "Implementation",
+    "title": "Implementation",
+    "content": " ",
+    "url": "/2526/docs/veinsjammer/implementation/",
+    
+    "relUrl": "/docs/veinsjammer/implementation/"
+  },"18": {
+    "doc": "Implementation",
+    "title": "Code Structure",
+    "content": "We started from VEINS 5.3.1 code . ",
+    "url": "/2526/docs/veinsjammer/implementation/#code-structure",
+    
+    "relUrl": "/docs/veinsjammer/implementation/#code-structure"
+  },"19": {
+    "doc": "Implementation",
+    "title": "Key Features",
+    "content": "Description of the key features implemented in the project. ",
+    "url": "/2526/docs/veinsjammer/implementation/#key-features",
+    
+    "relUrl": "/docs/veinsjammer/implementation/#key-features"
+  },"20": {
+    "doc": "Implementation",
+    "title": "Implementation",
+    "content": "The implementation is distributed across the application and scenario layers of the Plexe framework, while the simulation environment expose customizable variables and enable the recording of output vectors . ",
+    "url": "/2526/docs/platoonsplitting/implementation/",
+    
+    "relUrl": "/docs/platoonsplitting/implementation/"
+  },"21": {
+    "doc": "Implementation",
+    "title": "Code Structure",
+    "content": "The GettingStartedScenario.cc module implementation is centered around two primary methods. The initialize() method establishes the initial kinematic states, assigns base cruising speeds, and schedules the maneuver triggers. The handleMessage() method serves as the central event dispatcher. It actively manages a continuous radar polling loop that monitors the spatial gap to the preceding vehicle in real time. Once the target safety distance is achieved and with the leader authorization, the vehicle’s longitudinal controller changes from cooperative adaptive cruise control (CACC) to standard adaptive cruise control (ACC). The network application handles the logical hierarchy of the platoon. Upon a separation event, it is responsible for dividing the original formation array into two independent matrices. It manages the hierarchical propagation of the new formation data to the sub-followers, ensuring that trailing vehicles safely reconfigure their controller parameters to point to the new sub-leader. The simulation environment and physical constraints (such as deceleration severity, trigger timings, and spatial target gaps) are fully parameterized through the .ned file definitions and mapped in the omnetpp.ini runtime configuration. This architecture enables extensive simulation testing and scenario customization without the need to recompile the C++ source code. ",
+    "url": "/2526/docs/platoonsplitting/implementation/#code-structure",
+    
+    "relUrl": "/docs/platoonsplitting/implementation/#code-structure"
+  },"22": {
+    "doc": "Implementation",
+    "title": "Key Features",
+    "content": "Radar-Driven Controller Transition: A continuous feedback loop in the scenario layer that autonomously downgrades the vehicle’s longitudinal controller from cooperative (CACC) to standard adaptive (ACC) based on real-time spatial gap measurements. Dynamic Formation Splitting: On-the-fly division of the platoon matrix at the application layer, ensuring correct sub-leader election and safe radio parameter reconfiguration for the trailing followers. V2V Authorization Handshake: A request-response communication protocol ensuring that the splitting vehicle obtains explicit permission from the original platoon leader before altering kinematics or forming a new sub-platoon (GUI-only). Active Safety Stress-Testing: Programmable fault injections (e.g., sudden emergency braking by the old leader) executed via scenario timers to evaluate the collision avoidance capabilities and kinematic stability of the newly formed sub-platoon. ",
+    "url": "/2526/docs/platoonsplitting/implementation/#key-features",
+    
+    "relUrl": "/docs/platoonsplitting/implementation/#key-features"
+  },"23": {
+    "doc": "Veins Jammer",
+    "title": "Veins Jammer",
+    "content": "Documentation for the Veins Jammer project - jamming attacks simulation in vehicular networks. ",
+    "url": "/2526/docs/veinsjammer/",
+    
+    "relUrl": "/docs/veinsjammer/"
+  },"24": {
+    "doc": "Platoon splitting",
+    "title": "Platoon splitting",
+    "content": "Documentation for platoon splitting strategies and algorithms in cooperative driving scenarios. ",
+    "url": "/2526/docs/platoonsplitting/",
+    
+    "relUrl": "/docs/platoonsplitting/"
+  },"25": {
+    "doc": "Home",
+    "title": "VNCD 2526 Documentation",
+    "content": "Vehicle Network Cooperative Driving - Documentation and resources for the 2025-2026 academic year. View on GitHub . ",
+    "url": "/2526/#vncd-2526-documentation",
+    
+    "relUrl": "/#vncd-2526-documentation"
+  },"26": {
+    "doc": "Home",
+    "title": "About",
+    "content": "This site contains documentation, guides, and resources for the Vehicle Network Cooperative Driving project. ",
+    "url": "/2526/#about",
+    
+    "relUrl": "/#about"
+  },"27": {
+    "doc": "Home",
+    "title": "Navigation",
+    "content": ". | Veins Jammer - Jamming attacks simulation in vehicular networks | Platoon splitting - Platoon splitting strategies and algorithms | . ",
+    "url": "/2526/#navigation",
+    
+    "relUrl": "/#navigation"
+  },"28": {
+    "doc": "Home",
+    "title": "Home",
+    "content": " ",
+    "url": "/2526/",
+    
+    "relUrl": "/"
+  },"29": {
+    "doc": "Scenario",
+    "title": "Scenario",
+    "content": " ",
+    "url": "/2526/docs/veinsjammer/scenario/",
+    
+    "relUrl": "/docs/veinsjammer/scenario/"
+  },"30": {
+    "doc": "Scenario",
+    "title": "Network Setup",
+    "content": "Describe the network topology and vehicular scenario. ",
+    "url": "/2526/docs/veinsjammer/scenario/#network-setup",
+    
+    "relUrl": "/docs/veinsjammer/scenario/#network-setup"
+  },"31": {
+    "doc": "Scenario",
+    "title": "Attack Model",
+    "content": "Details about the jamming attack model and parameters. ",
+    "url": "/2526/docs/veinsjammer/scenario/#attack-model",
+    
+    "relUrl": "/docs/veinsjammer/scenario/#attack-model"
+  },"32": {
+    "doc": "Scenario",
+    "title": "Scenario",
+    "content": " ",
+    "url": "/2526/docs/platoonsplitting/scenario/",
+    
+    "relUrl": "/docs/platoonsplitting/scenario/"
+  },"33": {
+    "doc": "Scenario",
+    "title": "Platoon Configuration",
+    "content": "We customized the default GettingStartedScenario to introduce three novel parameters that govern the splitting protocol: . | splittingVehicleId — identifies the vehicle that will become the leader of the sub-platoon detaching from the main platoon. | leavingTime — the simulation instant at which that vehicle sends a request to the current platoon leader, seeking approval for the detach maneuver. | leavingDistance — together with the detach request, the vehicle also asks for authorization to keep using the CACC controller (e.g., PATH) up to this distance from the split point. Once this distance is reached, the leader grants the final authorization and the platoon formation records are updated accordingly. | . This two-step authorization protocol — first approving the intent to leave, then confirming the transition after the agreed distance — is fully configurable through the GettingStartedScenario parameters listed above. ",
+    "url": "/2526/docs/platoonsplitting/scenario/#platoon-configuration",
+    
+    "relUrl": "/docs/platoonsplitting/scenario/#platoon-configuration"
+  },"34": {
+    "doc": "Scenario",
+    "title": "Protocol design",
+    "content": ". ",
+    "url": "/2526/docs/platoonsplitting/scenario/#protocol-design",
+    
+    "relUrl": "/docs/platoonsplitting/scenario/#protocol-design"
+  }
+}

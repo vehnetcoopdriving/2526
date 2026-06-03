@@ -18,3 +18,9 @@ Step-by-step instructions to run the simulation.
 # Example command
 ./run_platoon_splitting.sh
 ```
+
+
+
+
+![Demo]({{'/assets/images/demo.gif' | relative_url }})
+

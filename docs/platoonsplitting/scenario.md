@@ -16,6 +16,7 @@ We customized the default [`GettingStartedScenario`](https://github.com/vehnetco
 
 This two-step authorization protocol — first approving the intent to leave, then confirming the transition after the agreed distance — is fully configurable through the `GettingStartedScenario` parameters listed above.
 
-## Splitting Conditions
 
-Details about the conditions that trigger platoon splitting.
+## Protocol design
+
+![Diagramma]({{'/assets/images/diagramma.png' | relative_url }})
