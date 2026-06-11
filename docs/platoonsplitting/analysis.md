@@ -12,12 +12,22 @@ The graph illustrates the time evolution of the headway (relative frontal distan
 In the initial phase (t < 3s ), the system operates in a steady state maintaining a nominal constant spacing of 5 meters between vehicles, confirming the successful coupling and stability of the cooperative CACC dynamics. Upon the triggering of the leavingTime parameter,  the leaving vehicle (the future leader of the sub-platoon)  begins to widen the spatial gap with respect to the preceding vehicle, creating an increasing distance ramp. This phase represents the kinematic separation transient, whose objective is to push the gap up to the leavingDistance threshold in order to trigger the controller state transition.
 Concurrently, the slight fluctuations (ranging between 3 and 5 meters) observable in the vehicles' curves during the first 15 seconds depict the physiological settling phase of the vehicular string following the perturbation. The control loop progressively dampens the tracking error, ensuring the absorption of the transient and restoring full spatial stability for the remainder of the formation.
 
+<div style="display: flex; gap: 10px; margin-bottom: 30px;">
+  <img src="{{ '/assets/images/distance_8.png' | relative_url }}" alt="Grafico 1" style="width: 48%;">
+  <img src="{{ '/assets/images/accel_8.png' | relative_url }}" alt="Grafico 2" style="width: 48%;">
+</div>
 
-![Grafico accelerazione 8]({{'/assets/images/accelerazione_8.png' | relative_url }}) ![Grafico distanza 8]({{'/assets/images/distance_8.png' | relative_url }})
 
-![Grafico accelerazione 16]({{'/assets/images/accel_16.png' | relative_url }}) ![Grafico distanza 16]({{'/assets/images/distance_16.png' | relative_url }})
 
-![Grafico accelerazione 32]({{'/assets/images/accel_32.png' | relative_url }}) ![Grafico distanza 32]({{'/assets/images/dist_32.png' | relative_url }})
+<div style="display: flex; gap: 10px; margin-bottom: 30px">
+  <img src="{{ '/assets/images/distance_16.png' | relative_url }}" alt="Grafico 1" style="width: 48%;">
+  <img src="{{ '/assets/images/accel_16.png' | relative_url }}" alt="Grafico 2" style="width: 48%;">
+</div>
+
+<div style="display: flex; gap: 10px; margin-bottom: 30px">
+  <img src="{{ '/assets/images/dist_32.png' | relative_url }}" alt="Grafico 1" style="width: 48%;">
+  <img src="{{ '/assets/images/accel_32.png' | relative_url }}" alt="Grafico 2" style="width: 48%;">
+</div>
 
 
 The comparison among the three simulated scenarios, obtained by setting the leavingDistance parameter to 8, 16, and 32 meters respectively, highlights a marked kinematic trade-off during the transient phase of the platoon separation.
