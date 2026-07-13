@@ -41,6 +41,10 @@ Alternatively, from the OMNeT++ IDE:
 
 ## Running the Simulation
 
+<video autoplay loop muted playsinline width="400">
+  <source src="{{ '/assets/images/sumo_jammer_video.webm' | relative_url }}" type="video/webm">
+</video>
+
 The default simulation uses the `Default` configuration defined in `omnetpp.ini`.
 
 ### Using the OMNeT++ IDE
