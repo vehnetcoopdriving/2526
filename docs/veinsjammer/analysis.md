@@ -1,4 +1,5 @@
 ---
+
 title: Analysis
 parent: Veins Jammer
 nav_order: 5
@@ -6,33 +7,42 @@ nav_order: 5
 
 # Analysis
 
-## Results
+## Evaluation
 
-The simulation evaluates the influence of jammer position on vehicular communication performance. Three configurations are considered:
+The implemented jammer was evaluated by comparing three simulation scenarios:
 
-* **Disabled jammer scenario:** vehicles communicate without intentional interference and provide the baseline network performance.
-* **Near jammer scenario (20 mW, position: 2050, 2050):** the reactive jammer is positioned closer to the main communication area, resulting in stronger interference during detected transmissions.
-* **Far jammer scenario (20 mW, position: 1400, 1400):** the reactive jammer is moved farther from the communication area, reducing the interference effect due to increased propagation distance.
+* **Disabled jammer:** baseline communication without interference.
+* **Near jammer:** jammer positioned at **(2050 m, 2050 m)**.
+* **Far jammer:** jammer positioned at **(1400 m, 1400 m)**.
 
-The objective is to evaluate how the jammer location affects packet reception reliability, SNIR degradation, and overall V2V communication performance.
+The objective is to assess how the jammer position influences IEEE 802.11p communication performance.
 
-## Performance Metrics
+The following metrics are considered:
 
-The communication performance is evaluated using:
-
+* Total generated WSMs
 * Total received WSMs
 * Mean received WSMs per vehicle
 * SNIR lost packets
 * Packet Delivery Ratio (PDR)
 * Packet Loss Ratio (PLR)
 
+The Packet Delivery Ratio and Packet Loss Ratio are computed as:
+
+$$
+PDR=\frac{\text{Received Packets}}
+{\text{Received Packets}+\text{Lost Packets}}\times100
+$$
+
+$$
+PLR=\frac{\text{Lost Packets}}
+{\text{Received Packets}+\text{Lost Packets}}\times100
+$$
+
 ---
 
-# Disabled Jammer Scenario (Baseline)
+## Disabled Jammer (Baseline)
 
-The disabled jammer configuration represents normal vehicular communication without malicious interference. It provides the reference performance used to evaluate the impact of jammer activation.
-
-The measured performance is:
+The baseline scenario represents normal network operation without malicious interference.
 
 | Metric                         |      Value |
 | ------------------------------ | ---------: |
@@ -40,38 +50,18 @@ The measured performance is:
 | Total received WSMs            |   **1640** |
 | Mean received WSMs per vehicle |  **24.07** |
 | SNIR lost packets              |    **245** |
-| Packet Delivery Ratio (PDR)    | **87.00%** |
-| Packet Loss Ratio (PLR)        | **13.00%** |
-
-The Packet Delivery Ratio is calculated as:
-
-$$
-PDR=\frac{\text{Received Packets}}
-{\text{Received Packets}+\text{Lost Packets}}
-\times100
-$$
-
-The Packet Loss Ratio is:
-
-$$
-PLR=\frac{\text{Lost Packets}}
-{\text{Received Packets}+\text{Lost Packets}}
-\times100
-$$
-
-The baseline losses are caused by normal wireless effects, including propagation loss, packet collisions, and channel conditions.
+| Packet Delivery Ratio          | **87.00%** |
+| Packet Loss Ratio              | **13.00%** |
 
 ---
 
-# Near Reactive Jammer Scenario (20 mW, Position: 2050, 2050)
+## Near Jammer
 
 ![Simulation topology]({{ "/assets/images/near.png" | relative_url }})
 
-*Figure 1. Jammer near to the RSU*
+*Figure 1. Jammer positioned near the RSU.*
 
-In the near jammer configuration, the reactive jammer is placed at **(2050,2050)**. The reduced distance between the jammer and communication participants increases the received interference level and produces stronger degradation during active transmissions. During the simulation, the reactive jammer is activated **23 times**, generating interference bursts in response to detected channel activity.
-
-The measured performance is:
+The jammer is placed at **(2050 m, 2050 m)**, close to the main communication area. During the simulation it detects channel activity and activates **23** times.
 
 | Metric                         |      Value |
 | ------------------------------ | ---------: |
@@ -79,123 +69,53 @@ The measured performance is:
 | Total received WSMs            |   **1729** |
 | Mean received WSMs per vehicle |  **25.81** |
 | SNIR lost packets              |    **442** |
-| Packet Delivery Ratio (PDR)    | **79.64%** |
-| Packet Loss Ratio (PLR)        | **20.36%** |
+| Packet Delivery Ratio          | **79.64%** |
+| Packet Loss Ratio              | **20.36%** |
 
-The Packet Delivery Ratio is:
-
-$$
-PDR=\frac{1729}{1729+442}\times100
-$$
-
-$$
-PDR=79.64%
-$$
-
-The Packet Loss Ratio is:
-
-$$
-PLR=\frac{442}{1729+442}\times100
-$$
-
-$$
-PLR=20.36%
-$$
-
-Compared with the disabled jammer case, the near jammer introduces:
-
-$$
-442-245=197
-$$
-
-additional SNIR-related packet losses.
-
-The Packet Delivery Ratio decreases from:
-
-$$
-87.00% \rightarrow 79.64%
-$$
-
-while the Packet Loss Ratio increases from:
-
-$$
-13.00% \rightarrow 20.36%
-$$
-
-This demonstrates that the near jammer has a strong impact on communication reliability.
+Compared with the baseline, the near jammer increases SNIR-related packet losses from **245** to **442**, reducing the Packet Delivery Ratio by more than **7 percentage points**.
 
 ---
 
-# Far Reactive Jammer Scenario (20 mW, Position: 1400, 1400)
+## Far Jammer
 
 ![Simulation topology]({{ "/assets/images/far_away.png" | relative_url }})
 
-*Figure 2. Jammer far-away from the RSU*
+*Figure 2. Jammer positioned farther from the RSU.*
 
-For the far jammer configuration, the jammer is moved to **(1400,1400)**. The increased distance modifies the interference conditions experienced by vehicles and reduces the number of packets affected by jamming.
-
-The measured results are:
+The jammer is moved to **(1400 m, 1400 m)**, increasing its distance from the main communication area.
 
 | Metric                         |      Value |
 | ------------------------------ | ---------: |
-| Vehicle-generated WSMs         |     **60** |
-| RSU-generated WSMs             |     **28** |
 | Total generated WSMs           |     **87** |
 | Total received WSMs            |   **1538** |
 | Mean received WSMs per vehicle |  **23.30** |
 | SNIR lost packets              |    **322** |
-| Packet Delivery Ratio (PDR)    | **82.69%** |
-| Packet Loss Ratio (PLR)        | **17.31%** |
+| Packet Delivery Ratio          | **82.69%** |
+| Packet Loss Ratio              | **17.31%** |
 
-The Packet Delivery Ratio is:
-
-$$
-PDR=\frac{1538}{1538+322}\times100
-$$
-
-$$
-PDR=82.69%
-$$
-
-The Packet Loss Ratio is:
-
-$$
-PLR=\frac{322}{1538+322}\times100
-$$
-
-$$
-PLR=17.31%
-$$
-
-Compared with the near jammer configuration, the far jammer reduces the number of SNIR-related packet losses:
-
-$$
-442-322=120
-$$
-
-packets are successfully recovered when changing the jammer position.
+Compared with the near configuration, the greater distance reduces the impact of the jammer, decreasing SNIR-related packet losses from **442** to **322**.
 
 ---
 
-# Comparison Between Disabled, Near Jammer, and Far Jammer Cases
+## Comparison
 
-| Metric                         | Disabled Jammer | Near Jammer (2050,2050) | Far Jammer (1400,1400) |
-| ------------------------------ | --------------: | ----------------------: | ---------------------: |
-| Total generated WSMs           |              87 |                      87 |                     87 |
-| Total received WSMs            |            1640 |                    1729 |                   1538 |
-| Mean received WSMs per vehicle |           24.07 |                   25.81 |                  23.30 |
-| SNIR lost packets              |             245 |                     442 |                    322 |
-| Packet Delivery Ratio          |          87.00% |                  79.64% |                 82.69% |
-| Packet Loss Ratio              |          13.00% |                  20.36% |                 17.31% |
+| Metric                         | Disabled | Near Jammer | Far Jammer |
+| ------------------------------ | -------: | ----------: | ---------: |
+| Total generated WSMs           |       87 |          87 |         87 |
+| Total received WSMs            |     1640 |        1729 |       1538 |
+| Mean received WSMs per vehicle |    24.07 |       25.81 |      23.30 |
+| SNIR lost packets              |      245 |         442 |        322 |
+| Packet Delivery Ratio          |   87.00% |      79.64% |     82.69% |
+| Packet Loss Ratio              |   13.00% |      20.36% |     17.31% |
 
 ---
 
-# Discussion
+## Discussion
 
-The results confirm that jammer placement has a significant influence on vehicular communication performance.
+The results show that jammer placement has a significant impact on communication reliability.
 
-Without interference, the network achieves a Packet Delivery Ratio of **87.00%** with **245 SNIR-related packet losses**. When the reactive jammer is placed at **(2050,2050)**, the communication performance degrades more significantly, reaching a Packet Delivery Ratio of **79.64%** and increasing SNIR losses to **442 packets**.
+The **near jammer** produces the strongest interference, increasing the number of SNIR-related packet losses by approximately **80%** compared with the baseline and reducing the Packet Delivery Ratio from **87.00%** to **79.64%**.
 
-When the jammer is moved to **(1400,1400)**, the Packet Delivery Ratio improves to **82.69%**, and SNIR losses decrease to **322 packets**. This indicates that increasing the distance between the jammer and the communication area reduces the effectiveness of the interference.
+Moving the jammer farther from the communication area reduces its effectiveness. Although the **far jammer** still degrades network performance, the Packet Delivery Ratio improves to **82.69%**, and the number of lost packets decreases compared with the near configuration.
 
-The comparison demonstrates that reactive jamming performance depends on the jammer position relative to the communication topology. A jammer located closer to active transmitters and receivers can produce stronger interference because the jamming signal experiences lower propagation attenuation. Increasing the distance reduces the received interference power and limits the degradation of V2V communication.
+Overall, the experiments demonstrate that the effectiveness of reactive jamming depends strongly on the jammer's position. A jammer located closer to the communicating vehicles generates stronger interference, whereas increasing the distance reduces the received jamming power and limits its impact on IEEE 802.11p communications.

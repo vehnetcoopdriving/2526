@@ -1,4 +1,5 @@
 ---
+
 title: How to Run
 parent: Veins Jammer
 nav_order: 4
@@ -8,34 +9,32 @@ nav_order: 4
 
 ## Prerequisites
 
-The project was developed using **VEINS 5.3.1** and requires the standard VEINS simulation environment. Before running the simulation, ensure that the following software is installed and correctly configured:
+The project was developed using **VEINS 5.3.1** and requires a standard VEINS simulation environment.
+
+Before running the simulation, ensure that the following software is installed:
 
 * OMNeT++ (compatible with VEINS 5.3.1)
 * SUMO (Simulation of Urban MObility)
 * VEINS 5.3.1
-* A C++ compiler supported by OMNeT++
+* A supported C++ compiler
 
-In addition, verify that:
+In addition:
 
-* the `VEINS_ROOT` environment variable (or equivalent project configuration) correctly points to the VEINS installation;
-* SUMO binaries are available in the system `PATH`;
-* the project has been imported into the OMNeT++ IDE and built successfully.
+* the VEINS installation must be correctly configured;
+* the SUMO executables must be available in the system `PATH`;
+* the project must be imported and built successfully in the OMNeT++ workspace.
 
 ---
 
 ## Building the Project
 
-If the project has not yet been compiled, build it from the project directory using:
+Compile the project from the root directory using:
 
 ```bash
 make
 ```
 
-Alternatively, from the OMNeT++ IDE:
-
-1. Import the project into the workspace.
-2. Build the project (**Project → Build Project**).
-3. Verify that no compilation errors are reported.
+Alternatively, build the project from the OMNeT++ IDE using **Project → Build Project**.
 
 ---
 
@@ -47,32 +46,24 @@ Alternatively, from the OMNeT++ IDE:
 
 The default simulation uses the `Default` configuration defined in `omnetpp.ini`.
 
-### Using the OMNeT++ IDE
+### OMNeT++ IDE
 
-1. Open the project in the OMNeT++ IDE.
+1. Open the project.
 2. Open `omnetpp.ini`.
-3. Right-click inside the editor.
-4. Select **Run As → OMNeT++ Simulation**.
-5. Choose the desired configuration (`Default`, `WithBeaconing`, or `WithChannelSwitching`).
+3. Select **Run As → OMNeT++ Simulation**.
+4. Choose the desired configuration.
 
-During execution:
+During execution, SUMO is started automatically, vehicles are created through TraCI, and simulation results are written to the `results/` directory.
 
-* SUMO is launched automatically through the TraCI Scenario Manager;
-* vehicles are created dynamically according to the traffic scenario;
-* the jammer node remains active throughout the simulation;
-* simulation results are stored in the `results/` directory.
+### Command Line
 
----
-
-### Using the Command Line
-
-The simulation can also be executed from the terminal.
+The same simulation can be started from the terminal:
 
 ```bash
 opp_run -u Cmdenv -f omnetpp.ini -c Default
 ```
 
-Alternatively, if a project-specific launch script is available:
+If the project includes a launch script, it can also be used:
 
 ```bash
 ./run_veins_jammer.sh
@@ -82,28 +73,28 @@ Alternatively, if a project-specific launch script is available:
 
 ## Available Configurations
 
-The project provides multiple simulation configurations through `omnetpp.ini`.
+The project provides three simulation configurations through `omnetpp.ini`.
 
-| Configuration          | Description                                                 |
-| ---------------------- | ----------------------------------------------------------- |
-| `Default`              | Standard scenario with the reactive jammer enabled.         |
-| `WithBeaconing`        | Enables periodic beacon transmission for vehicles and RSUs. |
-| `WithChannelSwitching` | Enables IEEE 1609.4 service channel switching.              |
+| Configuration          | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| `Default`              | Standard scenario with the reactive jammer enabled. |
+| `WithBeaconing`        | Enables periodic beacon transmission.               |
+| `WithChannelSwitching` | Enables IEEE 1609.4 channel switching.              |
 
-The desired configuration can be selected using the `-c` command-line option or directly from the OMNeT++ IDE.
+The desired configuration can be selected from the OMNeT++ IDE or with the `-c` command-line option.
 
 ---
 
-## Simulation Results
+## Results
 
-After each simulation, OMNeT++ generates scalar and vector result files that can be analysed using the built-in Result Analysis tools.
+After each simulation, OMNeT++ generates scalar and vector result files in the `results/` directory.
 
-The implemented jammer records, among others:
+The jammer records statistics including:
 
-* number of legitimate transmissions detected;
-* number of jammer activations;
-* configured reaction delay;
-* configured jamming duration;
-* configured transmission power.
+* detected channel activities;
+* jammer activations;
+* reaction delay;
+* jamming duration;
+* transmission power.
 
-Additional statistics and signals can be enabled or customized through the `omnetpp.ini` configuration file.
+These results can be analysed using the OMNeT++ Result Analysis tools.
