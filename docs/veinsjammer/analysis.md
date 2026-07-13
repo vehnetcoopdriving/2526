@@ -118,4 +118,6 @@ The **near jammer** produces the strongest interference, increasing the number o
 
 Moving the jammer farther from the communication area reduces its effectiveness. Although the **far jammer** still degrades network performance, the Packet Delivery Ratio improves to **82.69%**, and the number of lost packets decreases compared with the near configuration.
 
+Although the near jammer scenario reports a higher total number of received WSMs than the baseline, this metric represents all successful receptions across all vehicles rather than unique transmitted packets. Because vehicle positions and connectivity change during the simulation, the total number of receptions may vary independently of the packet loss caused by interference. For this reason, SNIR losses and PDR provide a more reliable indication of the jammer's impact.
+
 Overall, the experiments demonstrate that the effectiveness of reactive jamming depends strongly on the jammer's position. A jammer located closer to the communicating vehicles generates stronger interference, whereas increasing the distance reduces the received jamming power and limits its impact on IEEE 802.11p communications.
