@@ -69,32 +69,12 @@ If the project includes a launch script, it can also be used:
 ./run_veins_jammer.sh
 ```
 
----
-
-## Available Configurations
-
-The project provides three simulation configurations through `omnetpp.ini`.
-
-| Configuration          | Description                                         |
-| ---------------------- | --------------------------------------------------- |
-| `Default`              | Standard scenario with the reactive jammer enabled. |
-| `WithBeaconing`        | Enables periodic beacon transmission.               |
-| `WithChannelSwitching` | Enables IEEE 1609.4 channel switching.              |
-
-The desired configuration can be selected from the OMNeT++ IDE or with the `-c` command-line option.
-
----
-
 ## Results
 
-After each simulation, OMNeT++ generates scalar and vector result files in the `results/` directory.
+During execution, the jammer produces OMNeT++ log messages indicating:
 
-The jammer records statistics including:
++ detection of incoming PHY-layer transmissions;
++ start of each jamming burst;
++ end of each jamming burst.
 
-* detected channel activities;
-* jammer activations;
-* reaction delay;
-* jamming duration;
-* transmission power.
-
-These results can be analysed using the OMNeT++ Result Analysis tools.
+In addition, OMNeT++ records the standard scalar and vector result files in the results/ directory. These outputs can be analysed using the OMNeT++ Result Analysis tools to evaluate the impact of the reactive jammer on IEEE 802.11p communications.

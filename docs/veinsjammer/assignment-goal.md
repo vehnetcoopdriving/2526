@@ -6,13 +6,20 @@ nav_order: 1
 
 # Assignment Goal
 
-## Objectives
+## Overview
 
-The goal of this project is to design and implement a **reactive jamming attack** in a Vehicular Ad Hoc Network (VANET) using **VEINS 5.3.1**, **OMNeT++**, and **SUMO**.
+The objective of this project is to design and implement a **reactive jamming attack** against IEEE 802.11p communications in a Vehicular Ad Hoc Network (VANET) using **VEINS 5.3.1**, **OMNeT++**, and **SUMO**.
 
-Starting from the standard VEINS example, the project adds a malicious Road Side Unit (RSU) that selectively interferes with IEEE 802.11p communications between vehicles.
+The implementation extends the standard VEINS example scenario by introducing a malicious Road Side Unit (RSU) capable of selectively interfering with wireless communications between vehicles.
 
-Unlike a constant jammer, the reactive jammer remains silent until it detects activity on the wireless channel. It then transmits a short interference burst before returning to the idle state. This behavior makes the attacker more efficient and less detectable.
+Unlike a traditional constant jammer, which continuously occupies the wireless channel, the proposed jammer follows a **reactive strategy**:
+
+1. It monitors wireless activity at the physical layer.
+2. It detects the beginning of legitimate wireless transmissions.
+3. It immediately generates a short interference burst.
+4. It returns to an idle state until new activity is detected.
+
+This approach reduces unnecessary channel occupation while maintaining an effective attack capability.
 
 ---
 
@@ -22,64 +29,94 @@ Unlike a constant jammer, the reactive jammer remains silent until it detects ac
 
 *Figure 1. Standard VEINS scenario.*
 
-The implementation is based on the standard VEINS example presented in the [official Veins tutorial](https://veins.car2x.org/tutorial/#finish).
+The project is based on the official VEINS tutorial scenario, which already provides the main components required for VANET simulation:
 
-The example already provides:
+* vehicle mobility controlled by SUMO through TraCI;
+* IEEE 802.11p communication stack;
+* Road Side Units (RSUs);
+* example vehicle and RSU applications.
 
-- vehicle mobility managed by SUMO;
-- dynamic vehicle creation through TraCI;
-- an IEEE 802.11p communication stack;
-- Road Side Units (RSUs);
-- example applications for vehicles and RSUs.
+The existing architecture is extended with:
 
-The reactive jammer is added by extending this scenario without modifying the VEINS framework.
+* a new malicious RSU node;
+* a custom `JammerApplication`;
+* additional PHY-layer mechanisms for detecting incoming transmissions and generating interference signals.
 
----
-
-## Core Tasks
-
-### 1. Add a Malicious RSU
-
-Extend the network by adding a new Road Side Unit that acts as a jammer. The node uses the standard IEEE 802.11p protocol stack and runs a custom jamming application.
+The original VEINS communication stack is preserved, with modifications limited to the components required to support reactive jamming.
 
 ---
 
-### 2. Implement a Jammer Application
+## Project Objectives
 
-Develop a new application-layer module that:
+The implementation has four main objectives.
 
-- extends the VEINS application framework;
-- loads configurable jamming parameters;
-- interacts with the IEEE 802.11p MAC layer;
-- manages timers and the jammer state;
-- collects simulation statistics.
+### 1. Deploy a Malicious RSU
 
-The implementation should remain modular so that other jamming strategies can be added easily.
+A new stationary RSU is added to the simulation scenario. The node uses the standard IEEE 802.11p stack but runs a custom application responsible for controlling the jamming behaviour.
+
+The jammer operates as a network participant while generating interference at the physical layer rather than transmitting normal application packets.
 
 ---
 
-### 3. Implement Reactive Jamming
+### 2. Extend the IEEE 802.11p PHY Layer
 
-The jammer should transmit only when wireless activity is detected.
+The standard VEINS physical layer is extended with additional functionality required for reactive detection.
 
-The application should:
+The PHY layer is modified to:
 
-- monitor channel activity through MAC-layer busy notifications;
-- detect ongoing transmissions;
-- wait for a configurable reaction delay;
-- transmit an interference packet for a configurable duration;
-- return to the idle state and wait for the next transmission.
+* generate a notification when a new wireless frame starts reception;
+* distinguish legitimate transmissions from jammer-generated signals;
+* provide an interface for creating artificial interference signals.
+
+These extensions allow the jammer application to react directly to wireless channel activity without modifying the MAC layer.
 
 ---
 
-## Expected Outcomes
+### 3. Implement the Jammer Application
 
-At the end of the project, the implementation should provide:
+A dedicated `JammerApplication` module is developed to manage the attack logic.
 
-- a VEINS scenario including a malicious RSU;
-- a custom `JammerApplication` implementing the reactive jamming logic;
-- configurable attack parameters, including reaction delay, burst duration, transmission power, and an enable/disable option;
-- full compatibility with the VEINS 5.3.1 framework;
-- simulation statistics such as the number of detected transmissions and jammer activations.
+The application is responsible for:
 
-The completed project enables experiments to evaluate the impact of reactive jamming on IEEE 802.11p vehicular communications while preserving the original VEINS architecture.
+* subscribing to PHY-layer reception events;
+* loading configurable attack parameters;
+* maintaining the jammer state;
+* scheduling jamming start and stop events;
+* controlling the PHY-layer interference generation.
+
+The application is designed to remain modular, allowing additional attack strategies to be added in the future.
+
+---
+
+### 4. Implement Reactive Jamming
+
+The jammer follows an event-driven workflow:
+
+1. A legitimate IEEE 802.11p transmission begins.
+2. The PHY layer detects the incoming frame.
+3. An `incomingFrame` notification is emitted.
+4. `JammerApplication` receives the event.
+5. If the jammer is enabled and inactive, a jamming burst is started.
+6. The PHY layer injects an interference signal into the wireless channel.
+7. After the configured duration, the jammer returns to the idle state.
+
+Jammer-generated signals are excluded from the detection mechanism to prevent self-triggering and continuous activation.
+
+---
+
+## Expected Results
+
+The completed implementation provides:
+
+* a VEINS scenario containing a malicious RSU;
+* a reactive `JammerApplication`;
+* PHY-layer support for transmission detection and interference generation;
+* configurable attack parameters:
+  * enable/disable option;
+  * jamming duration;
+  * transmission power;
+  * operating channel;
+* compatibility with VEINS 5.3.1;
+* simulation logs and statistics describing jammer activity and communication degradation.
+
+The final system enables the evaluation of PHY-layer reactive jamming effects on IEEE 802.11p vehicular communications while maintaining compatibility with the existing VEINS simulation framework.
